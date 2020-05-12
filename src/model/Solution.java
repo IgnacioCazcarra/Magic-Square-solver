@@ -6,26 +6,38 @@ public class Solution {
 	}
 
 	public void drawSquare(Square square) {
+		
+		int matrixSize = square.getMatrix().length;
+		
+		String line = "";
+		for(int n = 0; n < 4*matrixSize; n++) {
+			line+="-";
+		}
+		
+		for (int i = 0; i < matrixSize; i++) {
+			for (int j = 0; j < matrixSize; j++) {
 
-		for (int i = 0; i < square.getMatrix().length; i++) {
-			for (int j = 0; j < square.getMatrix().length; j++) {
-
-				if (j != square.getMatrix().length - 1) {
-					System.out.print(square.getMatrix()[i][j] + " | ");
+				if (j != matrixSize - 1) {
+					if(square.getMatrix()[i][j]<10) {
+						System.out.print(square.getMatrix()[i][j] + "  | ");
+					}
+					else System.out.print(square.getMatrix()[i][j] + " | ");
 				} else {
 					System.out.print(square.getMatrix()[i][j]);
 					System.out.println();
 				}
 			}
-			if (i != square.getMatrix().length - 1) {
-				System.out.println("---------");
+			if (i != matrixSize - 1) {
+				System.out.println(line);
 			}
 		}
 	}
 
 	public void solveMS(Square square, int row, int col) {
 
-		for (int n = 1; n <= 9; n++) {
+		int matrixSize = square.getMatrix().length;
+		
+		for (int n = 1; n <= Math.pow(matrixSize, 2); n++) {
 
 			if (!checkEmpty(square).isEmpty()) {
 				int empty_i = Character.getNumericValue(checkEmpty(square).charAt(0));
@@ -61,10 +73,14 @@ public class Solution {
 		int j = 0;
 		int empty_i = 0;
 		int empty_j = 0;
+		int matrixSize = square.getMatrix().length;
+		
 		boolean found = false;
-		while (i < square.getMatrix().length && !found) {
+		
+		while (i < matrixSize && !found) {
 
-			while (j < square.getMatrix().length && !found) {
+			while (j < matrixSize && !found) {
+				
 				if (square.getMatrix()[i][j] == 0) {
 					empty_i = i;
 					empty_j = j;
@@ -75,6 +91,7 @@ public class Solution {
 			i++;
 			j = 0;
 		}
+		
 		if (found) {
 			return empty_i + "" + empty_j;
 		} else
@@ -85,9 +102,11 @@ public class Solution {
 
 		int i = 0, j = 0;
 		boolean valid = true;
+		int matrixSize = square.getMatrix().length;
 
-		while (i < square.getMatrix().length && valid) {
-			while (j < square.getMatrix().length && valid) {
+
+		while (i < matrixSize && valid) {
+			while (j < matrixSize && valid) {
 
 				if (square.getMatrix()[i][j] == target && i != row) {
 					valid = false;
@@ -106,32 +125,22 @@ public class Solution {
 	}
 
 	public boolean checkWin(Square square) {
+		
+		int matrixSize = square.getMatrix().length;
+		
 		int diagonalSum[] = new int[2];
-		int horizontalSum[] = new int[3];
-		int verticalSum[] = new int[3];
+		int horizontalSum[] = new int[matrixSize];
+		int verticalSum[] = new int[matrixSize];
 
-		for (int i = 0; i < square.getMatrix().length; i++) {
-			for (int j = 0; j < square.getMatrix().length; j++) {
-				if (i == 0) {
-					verticalSum[0] += square.getMatrix()[i][j];
-				} else if (i == 1) {
-					verticalSum[1] += square.getMatrix()[i][j];
-				} else {
-					verticalSum[2] += square.getMatrix()[i][j];
-				}
-
-				if (j == 0) {
-					horizontalSum[0] += square.getMatrix()[i][j];
-				} else if (j == 1) {
-					horizontalSum[1] += square.getMatrix()[i][j];
-				} else {
-					horizontalSum[2] += square.getMatrix()[i][j];
-				}
-
+		for (int i = 0; i < matrixSize; i++) {
+			for (int j = 0; j < matrixSize; j++) {
+				
+				verticalSum[i]+=square.getMatrix()[i][j];
+				horizontalSum[j] += square.getMatrix()[i][j];
 				if (i == j) {
 					diagonalSum[0] += square.getMatrix()[i][j];
 				}
-				if (j + i == 2) {
+				if (j + i == matrixSize-1) {
 					diagonalSum[1] += square.getMatrix()[i][j];
 				}
 
@@ -140,9 +149,10 @@ public class Solution {
 
 		boolean eq = true;
 		int i = 0;
-		int comparator = 15;
-
-		while (i < 3 && eq) {
+		double avgNum =  (Math.pow(matrixSize,2)+1)/2;
+		int comparator = (int) (matrixSize*avgNum);
+		
+		while (i < matrixSize && eq) {
 
 			if (horizontalSum[i] != comparator) {
 				eq = false;
