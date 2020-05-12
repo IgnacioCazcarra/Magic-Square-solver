@@ -3,7 +3,7 @@ This project solves NxN magic squares using backtracking algorithm.
 Keep in mind that if you try a NxN matrix with N>=5 it will take a while. Sometimes it seems to overflow due to the amount of iterations the backtracking algorithm does, so i recommend giving at least 2/3 of the numbers for a matrix with N>=5.
 
 
-##IMPORTANT:
+## IMPORTANT:
 -If you set an impossible initial matrix as in the example below, the result wont show at all.
 Example of an impossible answer:
 
