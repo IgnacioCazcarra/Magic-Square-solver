@@ -1,52 +1,25 @@
 package test;
 
-import model.Solution;
-import model.Square;
+import javax.swing.JFrame;
+
+import model.GUImatrix;
+import model.SolutionWithGUI;
 
 public class Test {
 	
-	public static void main(String[] args) {
-		Solution s = new Solution();
-		
-		Square threeByThree = new Square();
-		int[][] threeBoard = { 
-				{4,9,0},
-				{0,0,7},
-				{0,0,6},
+	public static void main(String[] args) throws InterruptedException {
 
+		int[][] board = { 
+				{7,14,0,9},
+				{15,6,12,0},
+				{0,0,13,0},
+				{10,11,0,8},
 		};
-		threeByThree.setMatrix(threeBoard);
-		s.drawSquare(threeByThree);
-		s.solveMS(threeByThree, 0, 0);
 		
-		System.out.println();
-		System.out.println();
+		JFrame frame2 = new GUImatrix(board);
+		SolutionWithGUI sg = new SolutionWithGUI();
+		sg.solveMS(((GUImatrix) frame2), 0, 0);
 		
-		Square fourByFour = new Square();
-		int[][] fourBoard = { 
-				{4,0,15,1},
-				{0,7,6,0},
-				{5,0,0,0},
-				{0,0,0,13}
-		};
-		fourByFour.setMatrix(fourBoard);
-		s.drawSquare(fourByFour);
-		s.solveMS(fourByFour, 0, 0);
-		
-		System.out.println();
-		System.out.println();
-		
-		Square fiveByFive = new Square();
-		int[][] fiveBoard = {
-				{17,23,0,10,11},
-				{0,5,0,12,18},
-				{1,7,0,0,0}, 
-				{0,14,20,0,0},
-				{15,16,22,3,9} 
-		};
-		fiveByFive.setMatrix(fiveBoard);
-		s.drawSquare(fiveByFive);
-		s.solveMS(fiveByFive, 0, 0);
 	}
 
 }
