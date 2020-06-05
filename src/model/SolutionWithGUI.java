@@ -8,10 +8,10 @@ import javax.swing.JLabel;
 public class SolutionWithGUI {
 	
 	public SolutionWithGUI() {}
-	public void solveMS(GUImatrix gui, int row, int col) throws InterruptedException {
+	public void solveMS(GUImatrix gui, int row, int col, int screenSize) throws InterruptedException {
 
 		int matrixSize = gui.getM().length;
-		gui.setSize(300,300);
+		gui.setSize(screenSize*matrixSize,screenSize*matrixSize);
 	    gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		for (int n = 1; n <= Math.pow(matrixSize, 2); n++) {
 
@@ -37,7 +37,7 @@ public class SolutionWithGUI {
 					} else {
 						int new_empty_i = Character.getNumericValue(checkEmpty(gui.getM()).charAt(0));
 						int new_empty_j = Character.getNumericValue(checkEmpty(gui.getM()).charAt(1));
-						solveMS(gui, new_empty_i, new_empty_j);
+						solveMS(gui, new_empty_i, new_empty_j, screenSize);
 					}
 					gui.getM()[row][col].setText(String.valueOf(0));
 
