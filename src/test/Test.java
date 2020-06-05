@@ -10,15 +10,15 @@ public class Test {
 	public static void main(String[] args) throws InterruptedException {
 
 		int[][] board = { 
-				{7,14,0,9},
-				{15,6,12,0},
-				{0,0,13,0},
-				{10,11,0,8},
+				{4,0,2},
+				{0,0,0},
+				{0,0,6},
 		};
+
 		
-		JFrame frame2 = new GUImatrix(board);
+		JFrame grid = new GUImatrix(board);
 		SolutionWithGUI sg = new SolutionWithGUI();
-		sg.solveMS(((GUImatrix) frame2), 0, 0);
+		sg.solveMS(((GUImatrix) grid), 0, 0, 100);
 		
 	}
 
