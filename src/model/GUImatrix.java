@@ -10,9 +10,6 @@ import javax.swing.SwingConstants;
 
 public class GUImatrix extends JFrame{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel[][] m;
 	private GridLayout layoutG;
@@ -45,8 +42,5 @@ public class GUImatrix extends JFrame{
 	public void setLayoutG(GridLayout layoutG) {
 		this.layoutG = layoutG;
 	}
-	
-	
-	
 	
 }

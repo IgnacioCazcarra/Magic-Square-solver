@@ -8,47 +8,46 @@ import javax.swing.JLabel;
 public class SolutionWithGUI {
 	
 	public SolutionWithGUI() {}
+	
 	public void solveMS(GUImatrix gui, int row, int col, int screenSize) throws InterruptedException {
 
 		int matrixSize = gui.getM().length;
 		gui.setSize(screenSize*matrixSize,screenSize*matrixSize);
-	    gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
+	    gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    	    
 		for (int n = 1; n <= Math.pow(matrixSize, 2); n++) {
 
 		    gui.setVisible(true);
+		    
 			if (!checkEmpty(gui.getM()).isEmpty()) {
 				int empty_i = Character.getNumericValue(checkEmpty(gui.getM()).charAt(0));
 				int empty_j = Character.getNumericValue(checkEmpty(gui.getM()).charAt(1));
 				row = empty_i;
 				col = empty_j;
+				
 				if (validNumber(n, empty_i, empty_j, gui)) {
+					
 					gui.getM()[empty_i][empty_j].setText(String.valueOf(n));
 					//setear
 					if (checkEmpty(gui.getM()).isEmpty()) {
 
 						if (checkWin(gui)) {
 							gui.setVisible(true);
-							TimeUnit.SECONDS.sleep(30);
-//							this.drawSquare(square);
-							
 						}
-						
 						
 					} else {
 						int new_empty_i = Character.getNumericValue(checkEmpty(gui.getM()).charAt(0));
 						int new_empty_j = Character.getNumericValue(checkEmpty(gui.getM()).charAt(1));
 						solveMS(gui, new_empty_i, new_empty_j, screenSize);
 					}
-					gui.getM()[row][col].setText(String.valueOf(0));
-
+					
+					
+					if(!checkWin(gui)) gui.getM()[row][col].setText("0");
 				}
 			}
 
 		}
-	}
-	
-	public void draw(GUImatrix gui) {
-		gui.setVisible(true);
+		
 		
 	}
 	
