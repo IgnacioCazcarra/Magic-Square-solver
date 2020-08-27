@@ -8,20 +8,16 @@ You can change the matrix at Test class.
 Example of an impossible matrix:
 
 ```
-2 9 6,
-1 0 0,
+2 9 6
+1 0 0
 0 0 8
 ```
 A matrix with a negative number is considered an impossible matrix as well.
  
 -If you leave an empty matrix such as: 
 ```
-0 0 0,
-0 0 0,
+0 0 0
+0 0 0
 0 0 0
 ```
 the function will return the first found solution.
-
-Due to time cirscumstances, the program will only show the solution for 30 seconds, but you can modify that at SolutionWithGUI's class. After 30 seconds, the matrix will return to its "original" form (same form as the input matrix). 
-
-
